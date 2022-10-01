@@ -7,7 +7,6 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-
 public class TraderTest {
     Trader<Drivable> trader;
 
@@ -21,7 +20,6 @@ public class TraderTest {
         assertEquals(0, trader.getInventory().size());
         assertEquals(0, trader.getWishlist().size());
     }
-
 
     @Test(timeout = 50)
     public void TestAddToWishlist() {

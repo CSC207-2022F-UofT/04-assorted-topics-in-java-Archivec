@@ -13,12 +13,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Trader<T> {
     private final List<T> inventory;
     private final List<T> wishlist;
     private int money;
-
 
     /**
      * Construct a Trader, giving them the given inventory,
@@ -29,40 +27,48 @@ public class Trader<T> {
      * @param money     The Trader's money
      */
     public Trader(List<T> inventory, List<T> wishlist,
-                  int money) {
+            int money) {
         this.inventory = inventory;
         this.wishlist = wishlist;
         this.money = money;
     }
 
-    /* TODO: Add a new constructor that takes a single argument
-     *       representing the Trader's money. Give the Trader
-     *       empty ArrayLists for their inventory and wishlist.
+    /*
+     * TODO: Add a new constructor that takes a single argument
+     * representing the Trader's money. Give the Trader
+     * empty ArrayLists for their inventory and wishlist.
      */
 
+    public Trader(int money) {
+        this.inventory = new ArrayList<T>();
+        this.wishlist = new ArrayList<T>();
+    }
 
-
-
-
-    /* TODO: Implement the method addToWishlist that takes an
-     *       object of type T and adds it to this Trader's wishlist.
+    /*
+     * TODO: Implement the method addToWishlist that takes an
+     * object of type T and adds it to this Trader's wishlist.
      */
 
+    public void addToWishlist(T obj) {
+        this.wishlist.add(obj);
+    }
 
-
-
-
-    /* TODO: Implement the method getSellingPrice that takes an
-     *       object of type T and returns the object's price
-     *       (via getPrice()) if it's Tradable. If not,
-     *       return Tradable.MISSING_PRICE.
+    /*
+     * TODO: Implement the method getSellingPrice that takes an
+     * object of type T and returns the object's price
+     * (via getPrice()) if it's Tradable. If not,
+     * return Tradable.MISSING_PRICE.
      *
-     *       We will call this in exchangeMoney().
+     * We will call this in exchangeMoney().
      */
 
-
-
-
+    public int getSellingPrice(T obj) {
+        if (obj instanceof Tradable) {
+            return ((Tradable) obj).getPrice();
+        } else {
+            return Tradable.MISSING_PRICE;
+        }
+    }
 
     /**
      * Exchange money from other to this Trader according to the price of item,
@@ -117,7 +123,6 @@ public class Trader<T> {
         return other.sellTo(this);
     }
 
-
     @Override
     public String toString() {
         StringBuilder details = new StringBuilder("-- Inventory --\n");
@@ -134,11 +139,11 @@ public class Trader<T> {
         return details.toString();
     }
 
-    public List<T> getWishlist(){
+    public List<T> getWishlist() {
         return this.wishlist;
     }
 
-    public List<T> getInventory(){
+    public List<T> getInventory() {
         return this.inventory;
     }
 
